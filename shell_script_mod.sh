@@ -18,13 +18,13 @@ fi
 ##复制两个文件
 cp -f /shylocks/jd*.js /scripts/
 
-##使用自定义shell下载并配置执行美妆
+##使用自定义shell下载并配置执行盲盒抽京豆
 echo "10 8,9,10 * * * node /scripts/jd_mh.js |ts >> /scripts/logs/jd_mh.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ##使用自定义shell下载并配置执行宝洁美发屋
 echo "1 8,9 14-31/1 1 * node /scripts/jd_bj.js |ts >> /scripts/logs/jd_bj.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ##使用自定义shell下载并配置执行京东粉丝专享
 echo "1 7 * * * node /scripts/jd_wechat_sign.js |ts >> /scripts/logs/jd_wechat_sign.log 2>&1" >> /scripts/docker/merged_list_file.sh
-##使用自定义shell下载并配置执行京东粉丝专享
+##使用自定义shell下载并配置执行京东秒秒币
 echo "1 7 * * * node /scripts/jd_ms.js |ts >> /scripts/logs/jd_ms.log 2>&1" >> /scripts/docker/merged_list_file.sh
 #神券京豆
 echo "1 7 13 1 * node /scripts/jd_super_coupon.js |ts >> /scripts/logs/jd_super_coupon.log 2>&1" >> /scripts/docker/merged_list_file.sh
@@ -32,8 +32,10 @@ echo "1 7 13 1 * node /scripts/jd_super_coupon.js |ts >> /scripts/logs/jd_super_
 echo "30 * * * * node /scripts/jd_gyec.js |ts >> /scripts/logs/jd_gyec.log 2>&1" >> /scripts/docker/merged_list_file.sh
 #小鸽有礼
 echo "5 7 * * * node /scripts/jd_xg.js |ts >> /scripts/logs/jd_xg.log 2>&1" >> /scripts/docker/merged_list_file.sh
-#个护消消乐
+#个护爱消除
 echo "40 * * * * node /scripts/jd_xxl_gh.js |ts >> /scripts/logs/jd_xxl_gh.log 2>&1" >> /scripts/docker/merged_list_file.sh
+#东东爱消除
+echo "0 * * * * node /scripts/jd_xxl.js |ts >> /scripts/logs/jd_xxl.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
 # #临时增加红包雨
 echo "58,59 18-20/1 * * * git -C /shylocks reset --hard && git -C /shylocks pull --rebase" >> /scripts/docker/merged_list_file.sh
