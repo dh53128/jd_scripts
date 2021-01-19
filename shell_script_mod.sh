@@ -1,38 +1,44 @@
 #!/bin/sh
-#@shylocks²Ö¿â½Å±¾
+#@shylocksä»“åº“è„šæœ¬
 function initShylocks() {
     git clone https://github.com/shylocks/Loon.git /shylocks
     npm install
 }
 
  if [ ! -d "/shylocks/" ]; then
-    echo "Î´¼ì²éµ½shylocks²Ö¿â½Å±¾£¬³õÊ¼»¯ÏÂÔØÏà¹Ø½Å±¾"
+    echo "æœªæ£€æŸ¥åˆ°shylocksä»“åº“è„šæœ¬ï¼Œåˆå§‹åŒ–ä¸‹è½½ç›¸å…³è„šæœ¬"
     initShylocks
 else
-    echo "¸üĞÂshylocks½Å±¾Ïà¹ØÎÄ¼ş"
+    echo "æ›´æ–°shylocksè„šæœ¬ç›¸å…³æ–‡ä»¶"
     git -C /shylocks reset --hard
     git -C /shylocks pull --rebase
     npm install
 fi
 
-##¸´ÖÆÁ½¸öÎÄ¼ş
+##å¤åˆ¶ä¸¤ä¸ªæ–‡ä»¶
 cp -f /shylocks/jd*.js /scripts/
 
-##Ê¹ÓÃ×Ô¶¨ÒåshellÏÂÔØ²¢ÅäÖÃÖ´ĞĞÃÀ×±
+##ä½¿ç”¨è‡ªå®šä¹‰shellä¸‹è½½å¹¶é…ç½®æ‰§è¡Œç¾å¦†
 echo "10 8,9,10 * * * node /scripts/jd_mh.js |ts >> /scripts/logs/jd_mh.log 2>&1" >> /scripts/docker/merged_list_file.sh
-##Ê¹ÓÃ×Ô¶¨ÒåshellÏÂÔØ²¢ÅäÖÃÖ´ĞĞ±¦½àÃÀ·¢Îİ
+##ä½¿ç”¨è‡ªå®šä¹‰shellä¸‹è½½å¹¶é…ç½®æ‰§è¡Œå®æ´ç¾å‘å±‹
 echo "1 8,9 14-31/1 1 * node /scripts/jd_bj.js |ts >> /scripts/logs/jd_bj.log 2>&1" >> /scripts/docker/merged_list_file.sh
-##Ê¹ÓÃ×Ô¶¨ÒåshellÏÂÔØ²¢ÅäÖÃÖ´ĞĞ¾©¶«·ÛË¿×¨Ïí
+##ä½¿ç”¨è‡ªå®šä¹‰shellä¸‹è½½å¹¶é…ç½®æ‰§è¡Œäº¬ä¸œç²‰ä¸ä¸“äº«
 echo "1 7 * * * node /scripts/jd_wechat_sign.js |ts >> /scripts/logs/jd_wechat_sign.log 2>&1" >> /scripts/docker/merged_list_file.sh
-##Ê¹ÓÃ×Ô¶¨ÒåshellÏÂÔØ²¢ÅäÖÃÖ´ĞĞ¾©¶«·ÛË¿×¨Ïí
+##ä½¿ç”¨è‡ªå®šä¹‰shellä¸‹è½½å¹¶é…ç½®æ‰§è¡Œäº¬ä¸œç²‰ä¸ä¸“äº«
 echo "1 7 * * * node /scripts/jd_ms.js |ts >> /scripts/logs/jd_ms.log 2>&1" >> /scripts/docker/merged_list_file.sh
-#ÉñÈ¯¾©¶¹
+#ç¥åˆ¸äº¬è±†
 echo "1 7 13 1 * node /scripts/jd_super_coupon.js |ts >> /scripts/logs/jd_super_coupon.log 2>&1" >> /scripts/docker/merged_list_file.sh
-#¹¤Òµ°®Ïû³ı
+#å·¥ä¸šçˆ±æ¶ˆé™¤
 echo "30 * * * * node /scripts/jd_gyec.js |ts >> /scripts/logs/jd_gyec.log 2>&1" >> /scripts/docker/merged_list_file.sh
-#Ğ¡¸ëÓĞÀñ
+#å°é¸½æœ‰ç¤¼
 echo "5 7 * * * node /scripts/jd_xg.js |ts >> /scripts/logs/jd_xg.log 2>&1" >> /scripts/docker/merged_list_file.sh
+#ä¸ªæŠ¤æ¶ˆæ¶ˆä¹
+echo "40 * * * * node /scripts/jd_xxl_gh.js |ts >> /scripts/logs/jd_xxl_gh.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
-# #ÁÙÊ±Ôö¼Óºì°üÓê
+# #ä¸´æ—¶å¢åŠ çº¢åŒ…é›¨
 echo "58,59 18-20/1 * * * git -C /shylocks reset --hard && git -C /shylocks pull --rebase" >> /scripts/docker/merged_list_file.sh
 echo "0,1 19-21/1 * * * node /scripts/jd_live_redrain2.js |ts >> /scripts/logs/jd_live_redrain2.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "30,31 20-23/1 19 1 * node /scripts/jd_live_redrain.js |ts >> /scripts/logs/jd_live_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+
+#ç”±äºbookshopä½œè€…è¿˜æ²¡æœ‰å¢åŠ äº’åŠ©ç ç¯å¢ƒå˜é‡ï¼Œå°±è‡ªå·±æ‰‹åŠ¨sedè¿›å»äº†
+#sed -i "s/shareCodesArr = \[\]/shareCodesArr = \['a25442c9de1a47ddbe4cd3c4828bd8ea@aba172068b7a46e2b6cf89563b919053','ed23af1e5a5946b381266b2192f8d4a2@aba172068b7a46e2b6cf89563b919053','ed23af1e5a5946b381266b2192f8d4a2@a25442c9de1a47ddbe4cd3c4828bd8ea'\]/g" /scripts/jd_bookshop.js
