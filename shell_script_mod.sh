@@ -45,3 +45,4 @@ echo "30,31 20-23/1 19 1 * node /scripts/jd_live_redrain.js |ts >> /scripts/logs
 #由于bookshop作者还没有增加互助码环境变量，就自己手动sed进去了
 sed -i "s/shareCodesArr = \[\]/shareCodesArr = \['2809701','1723172','2809842','2809887','1214705'\]/g" /scripts/jd_gyec.js
 sed -i "s/shareCodesArr = \[\]/shareCodesArr = \['2809701','1723172','2809842','2809887','1214705'\]/g" /scripts/jd_xxl_gh.js
+sed -i "s/shareCodesArr = \[\]/shareCodesArr = \['2809701','1723172','2809842','2809887','1214705'\]/g" /scripts/jd_xxl.js
